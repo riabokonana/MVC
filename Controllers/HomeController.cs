@@ -73,6 +73,14 @@ namespace FileWorkPril.Controllers
             return files;
         }
 
+        // функция скачивания файла
+        [HttpPost]
+        public VirtualFileResult GetVirtualFile(string filename)
+        {
+            var filepath = Path.Combine("~/Files", filename);
+            return File(filepath, "text/plain", filename);
+        }
+
         
 
     }
