@@ -1,0 +1,28 @@
+﻿@{
+    ViewData["Title"] = "Работа с файлами";
+}
+
+<h3>Загрузка файла на сервер</h3>
+<form asp-action="AddFile" asp-controller="Home" method="post" enctype="multipart/form-data">
+    <div class="form-group">
+        <input class="form-control-file" type="file" name="uploadedFile" />
+    </div>
+    <input class="btn btn-primary" type="submit" value="Загрузить" />
+</form>
+<br />
+<br />
+<h3>Файлов на сервере @ViewBag.Files.Count</h3>
+<form  id="serverfiles" asp-action="GetVirtualFile" asp-controller="Home" method="post">
+    <div class="form-group block">
+        <div class="form-group">
+            <select size=" @ViewBag.Files.Count" name="filename" class="form-control" required>
+                @foreach (string file in ViewBag.Files)
+                {
+                    <option value="@file">@file</option>
+                }
+            </select>
+        </div>
+        <input id="downloadBtn" class="btn btn-primary" type="submit" value="Скачать" />
+        <input id="removeBtn" class="btn btn-secondary" type="submit" value="Удалить" />
+    </div>
+</form>
