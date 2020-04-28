@@ -57,7 +57,23 @@ namespace FileWorkPril.Controllers
 
             return RedirectToAction("Index");
         }
+        // функция получения списка файлов
+        public List<string> getFiles()
+        {
+            List<string> files = new List<string>();
+            string path = "/Files/";
+
+            DirectoryInfo source = new DirectoryInfo(_appEnvironment.WebRootPath + path);
+
+            foreach (FileInfo fi in source.GetFiles())
+            {
+                files.Add(fi.Name);
+            }
+
+            return files;
+        }
 
         
+
     }
 }
