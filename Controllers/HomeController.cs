@@ -81,7 +81,23 @@ namespace FileWorkPril.Controllers
             return File(filepath, "text/plain", filename);
         }
 
-        
+        // функция удаления файла
+        [HttpPost]
+        public IActionResult RemoveFile(string filename)
+        {
+            if (filename != null)
+            {
+                // путь к папке Files
+                string path = "/Files/" + filename;
+
+                if (System.IO.File.Exists(_appEnvironment.WebRootPath + path))
+                {
+                    System.IO.File.Delete(_appEnvironment.WebRootPath + path);
+                }
+            }
+
+            return RedirectToAction("Index");
+        }
 
     }
 }
